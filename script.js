@@ -1,31 +1,31 @@
 let data= [
     {
         id:1,
-        image: 'https://i.pinimg.com/564x/a1/71/ed/a171edb2247919d4f1e3326ae5e07bf1.jpg',
+        image: 'https://www.vanqled.net/uploads/allimg/180517/1-1P51GIZ63L.jpg',
         title: 'flowers 1',
         url: 'https://google.com'
     },
     {
         id:2,
-        image: "https://i.pinimg.com/564x/25/8d/a1/258da1ff04811df03911e4d62eee17a0.jpg",
+        image: "https://lovegarden.pl/wp-content/uploads/2018/10/yen-vu-585330-unsplash-1024x682.jpg",
         title: 'flowers 2',
         url: 'https://google.com'
     },
     {
         id:3,
-        image: "https://i.pinimg.com/564x/67/bc/43/67bc435c1ff89bfd5a695d76b716a08d.jpg",
+        image: "https://poradzimy24.pl/wp-content/uploads/2020/07/sukulenty-w-ogrodzie-succulents-1030982_1280-1024x637.jpg",
         title: 'flowers 3',
         url: 'https://google.com'
     },
     {
         id:4,
-        image: 'https://i.pinimg.com/564x/cf/1a/df/cf1adf6f283e5bfcf20f9c892f4837b0.jpg',
+        image: 'https://www.claudia.pl/media/cache/default_view/uploads/media/default/0001/49/jak-dbac-o-sukulenty-w-domu.jpeg',
         title: 'flowers 4',
         url: 'https://google.com'
     },
     {
         id:5,
-        image: "https://i.pinimg.com/564x/fa/27/56/fa2756f1fac2e4d36a8c6f0a4b7c47f5.jpg",
+        image: "https://i2.wp.com/wpunkt.online/wp-content/uploads/2020/05/sukulent-2.png?resize=1000%2C625&ssl=1",
         title: 'flowers 5',
         url: 'https://google.com'
     }
@@ -46,11 +46,14 @@ function createAtag(item) {
     return aTag;
 }
 
-
 function createImgTag(item) {
-    let tagImage = document.body.style.backgroundImage = 'url('+item.image+')';
-    // tagImage.classList.add('background');
+    let tagImage = document.createElement('div');
+    tagImage.style.backgroundImage = `url(${item.image})`;
+    tagImage.setAttribute('class', 'bg-image');
+
+    return tagImage;
 }
+
 
 function createH2Tag(item) {
     let tagTitle = document.createElement('h2');
@@ -83,10 +86,11 @@ function createDots(item) {
 function setSlide() {
     sliderContent.innerHTML = ' ';
     let slideItem = createAtag(data[sliderIndex]);
-    createImgTag(data[sliderIndex])
+    let createImg = createImgTag(data[sliderIndex]);
     let h2Tag = createH2Tag(data[sliderIndex]);
     let dots = createDots();
 
+    slideItem.appendChild(createImg);
     slideItem.appendChild(h2Tag);
     sliderContent.appendChild(slideItem);
     sliderContent.appendChild(dots);
